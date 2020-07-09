@@ -10,6 +10,3 @@ puts say_hello("larry", 60)
 puts say_hello("curly", 125)
 puts say_hello("moe")
 puts say_hello("shemp", 90)
-
-name1 = "larry"
-puts say_hello(name1).object_id
