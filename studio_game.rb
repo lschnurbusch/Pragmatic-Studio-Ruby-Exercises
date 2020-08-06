@@ -29,6 +29,6 @@ response = gets.chomp.downcase
         knuckleheads.save_high_scores
         break
     else
-        puts "Please enter a number or 'quit'."
+        puts "\nPlease enter a number or 'quit'."
     end
 end

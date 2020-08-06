@@ -1,12 +1,15 @@
 require_relative 'player'
 require_relative 'die'
+require_relative 'loaded_die'
 require_relative 'treasure_trove'
 
 module GameTurn
   
   def self.take_turn(player)
-    number_rolled = Die.new.number
-    case number_rolled
+    die = Die.new
+    die.roll
+
+    case die.number
       when 1..2
         player.blam
       when 3..4
