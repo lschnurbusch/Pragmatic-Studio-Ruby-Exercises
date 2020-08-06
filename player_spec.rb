@@ -70,7 +70,7 @@ describe Player do
   
   context "in a collection of players" do
     before do
-      @player1 = Player.new("moe, 100")
+      @player1 = Player.new("moe", 100)
       @player2 = Player.new("larry", 200)
       @player3 = Player.new("curly", 300)
       
@@ -97,6 +97,28 @@ describe Player do
     @player.found_treasure(Treasure.new(:hammer, 50))
   
     expect(@player.points).to eq(500)
+  end
+
+  it "yields each found treasure and its total points" do
+    @player.found_treasure(Treasure.new(:skillet, 100))
+    @player.found_treasure(Treasure.new(:skillet, 100))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+  
+    yielded = []
+    @player.each_found_treasure do |treasure|
+      yielded << treasure
+    end
+  
+    expect(yielded).to eq([
+      Treasure.new(:skillet, 200),
+      Treasure.new(:hammer, 50),
+      Treasure.new(:bottle, 25)
+   ])
   end
 
 end

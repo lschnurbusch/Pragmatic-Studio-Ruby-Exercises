@@ -41,14 +41,10 @@ describe Game do
   end
 
   it "assigns a treasure for points during a player's turn" do
-    game = Game.new("Knuckleheads")
-    player = Player.new("moe")
-  
-    game.add_player(player)
-  
-    game.play(1)
+   
+    @game.play(1)
 
-    expect(player.points).not_to eq(0)
+    expect(@player.points).not_to eq(0)
   end
   
 end
